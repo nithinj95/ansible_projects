@@ -1,0 +1,21 @@
+---
+
+- hosts: webserver
+  become: yes
+  vars_prompt:
+          - name: "project_name"
+            prompt: "enter the project name"
+            private: no
+          - name: "http_port"
+            prompt: "enter the http port"
+            private: no
+          - name: "project_path"
+            prompt: " enter the project folder"
+            private: no
+  roles:
+          - nginx
+
+
+
+
+                 

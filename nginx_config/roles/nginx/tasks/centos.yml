@@ -1,0 +1,30 @@
+---
+
+- name: " install nginx"
+  yum:
+          name: nginx
+          state: latest
+
+- name: "start nginx"
+  service:
+          name: nginx
+          state: started
+
+- name: "open firewall service"
+  firewalld:
+          port: "{{http_port}}/tcp"
+          immediate: yes
+          permanent: yes
+          state: enabled
+
+- name: "upload the project file"
+  copy:
+          src: "{{project_path}}"
+          dest: "/var/www/{{project_name}}"
+
+- name: "upload the config file"
+  template:
+          src: "nginx.conf.j2"
+          dest: "/etc/nginx/conf.d/{{project_name}}.conf"
+  notify: restart_nginx
+

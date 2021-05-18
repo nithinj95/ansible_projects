@@ -1,0 +1,14 @@
+server {
+	listen {{http_port}};
+	listen [::]:{{http_port}};
+
+	server_name {{project_name}};
+
+	root /var/www/{{project_name}}/{{project_path}};
+	index index.html;
+
+	location / {
+		try_files $uri $uri/ =404;
+	}
+}
+

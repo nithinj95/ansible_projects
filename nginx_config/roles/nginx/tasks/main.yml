@@ -1,0 +1,9 @@
+---
+
+- name: "include centOS"
+  include_tasks: centos.yml
+  when: ansible_facts['distribution'] == 'CentOS'
+
+- name: "include ubuntu"
+  include_tasks: ubuntu.yml
+  when: ansible_facts['distribution'] == 'Ubuntu'
